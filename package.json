@@ -16,6 +16,7 @@
     "notification"
   ],
   "dependencies": {
+    "acorn": "6.4.1",
     "classnames": "^2.1.1",
     "prop-types": "^15.5.10",
     "react-transition-group": "^1.2.0"
