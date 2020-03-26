@@ -1,9 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import pkg from '../package.json';
+console.log(process.argv);
 
 const ENV = process.env.NODE_ENV || 'development';
 const DEV = ENV === 'development';
@@ -61,7 +62,7 @@ const webpackConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader', 'babel-loader']
+        use: ['react-hot-loader/webpack', 'babel-loader?preset[]=react']
       },
       {
         test: /\.css$/,
@@ -92,9 +93,7 @@ const webpackConfig = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin([DEST_DIR], {
-      verbose: false
-    }),
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(ENV)
