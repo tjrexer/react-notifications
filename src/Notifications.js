@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import classnames from 'classnames';
 import Notification from './Notification';
 
@@ -32,28 +32,33 @@ class Notifications extends React.Component {
     const className = classnames('notification-container', {
       'notification-container-empty': notifications.length === 0
     });
+
+    const items = notifications.map((notification,i) => {
+        const key = notification.id || new Date().getTime();
+        return (
+          <CSSTransition
+            key={i}
+            classNames="notification"
+            timeout={{ enter: enterTimeout, exit: leaveTimeout }}
+          >
+          <Notification
+            key={key}
+            type={notification.type}
+            title={notification.title}
+            message={notification.message}
+            timeOut={notification.timeOut}
+            onClick={notification.onClick}
+            onRequestHide={this.handleRequestHide(notification)}
+          />
+          </CSSTransition>
+        );
+      })
     return (
       <div className={className}>
-        <CSSTransitionGroup
-          transitionName="notification"
-          transitionEnterTimeout={enterTimeout}
-          transitionLeaveTimeout={leaveTimeout}
-        >
-          {notifications.map((notification) => {
-            const key = notification.id || new Date().getTime();
-            return (
-              <Notification
-                key={key}
-                type={notification.type}
-                title={notification.title}
-                message={notification.message}
-                timeOut={notification.timeOut}
-                onClick={notification.onClick}
-                onRequestHide={this.handleRequestHide(notification)}
-              />
-            );
-          })}
-        </CSSTransitionGroup>
+
+        <TransitionGroup >
+          {items}
+        </TransitionGroup>
       </div>
     );
   }
