@@ -1,20 +1,20 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
+        "modules":false,
         "targets": {
           "browsers": [
-            "last 2 versions"
+            "last 2 versions",
           ]
-        }
+        },
       }
     ],
-    "react"
+    "@babel/preset-react",
   ],
   "plugins": [
-    "add-module-exports",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }
