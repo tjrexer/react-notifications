@@ -94,8 +94,6 @@ const NotificationContainer = window.ReactNotifications.NotificationContainer;
 const NotificationManager = window.ReactNotifications.NotificationManager;
 ```
 
-Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
-
 ## NotificationContainer Props
 
 | Name | Type | Default | Required |
@@ -120,3 +118,27 @@ Example [here](https://codepen.io/minhtranite/pen/RgoaLL)
 
 ## Example
 View [demo](http://minhtranite.github.io/react-notifications) or example folder.
+
+## Contributing
+
+When contributing to this reposity, please first open an issue and discuss intended changes with maintainers.  If there is already an issue open for the feature you are looking to develop, please just coordinate with maintainers before assigning issue to yourself.
+
+### Branches
+
+`master` is the main branch from which we publish packages.  `next` is the branch from which we will publish the next release.  All `issue` branches should be branched from `master`, unless specifically told by the maintainers to use a different branch.  All pull requests should be submitted to merge with `next` in order to make the next release.
+
+### Workflow
+
+- Fork repo
+- Create an issue branch
+- Commit your changes
+- Open a PR against `next`.
+- Link the Issue to your PR.
+
+### Pull Request Guidelines
+
+- PRs should be submitted to merge with `next`.
+- PRs should be small in scope, work on 1 issue in a single PR.
+- Link the Issue you are working to your PR.
+
+You can add as many commits to your PR as you would like.  All commits will be squashed into a single commit when merging PR.
