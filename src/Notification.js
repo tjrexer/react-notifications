@@ -6,7 +6,7 @@ class Notification extends React.Component {
   static propTypes = {
     type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
     title: PropTypes.node,
-    message: PropTypes.node.isRequired,
+    message: PropTypes.node,
     timeOut: PropTypes.number,
     onClick: PropTypes.func,
     onRequestHide: PropTypes.func

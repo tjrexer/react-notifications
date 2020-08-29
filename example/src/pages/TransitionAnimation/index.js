@@ -5,7 +5,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import './notifications.scss';
 
 class TransitionAnimationPage extends React.Component {
-  createNotification = type => () => {
+  createNotification = (type) => () => {
     switch (type) {
       case 'info':
         NotificationManager.info('Info message');
@@ -36,19 +36,19 @@ class TransitionAnimationPage extends React.Component {
           <div className="page-header">
             <h1>Transition & animation</h1>
           </div>
-          <button className="btn btn-info" onClick={this.createNotification('info')}>
+          <button type="button" className="btn btn-info" onClick={this.createNotification('info')}>
             Info
           </button>
           <hr/>
-          <button className="btn btn-success" onClick={this.createNotification('success')}>
+          <button type="button" className="btn btn-success" onClick={this.createNotification('success')}>
             Success
           </button>
           <hr/>
-          <button className="btn btn-warning" onClick={this.createNotification('warning')}>
+          <button type="button" className="btn btn-warning" onClick={this.createNotification('warning')}>
             Warning
           </button>
           <hr/>
-          <button className="btn btn-danger" onClick={this.createNotification('error')}>
+          <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
           </button>
 
@@ -60,4 +60,3 @@ class TransitionAnimationPage extends React.Component {
 }
 
 export default TransitionAnimationPage;
-

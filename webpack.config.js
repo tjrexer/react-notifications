@@ -6,6 +6,10 @@ import pkg from './package.json';
 const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
 
 const webpackConfig = {
+  mode: 'production',
+  optimization: {
+    minimize: false
+  },
   output: {
     filename: `${pkg.name}.js`,
     library: capitalizeFirstLetter(camelCase(pkg.name)),
@@ -61,15 +65,6 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
       }
     })
   ]

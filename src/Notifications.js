@@ -6,7 +6,7 @@ import Notification from './Notification';
 
 class Notifications extends React.Component {
   static propTypes = {
-    notifications: PropTypes.array.isRequired,
+    notifications: PropTypes.array,
     onRequestHide: PropTypes.func,
     enterTimeout: PropTypes.number,
     leaveTimeout: PropTypes.number
@@ -20,7 +20,7 @@ class Notifications extends React.Component {
     leaveTimeout: 400
   };
 
-  handleRequestHide = notification => () => {
+  handleRequestHide = (notification) => () => {
     const { onRequestHide } = this.props;
     if (onRequestHide) {
       onRequestHide(notification);

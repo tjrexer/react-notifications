@@ -1,8 +1,6 @@
 import url from 'url';
 import express from 'express';
 import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
@@ -22,28 +20,6 @@ const proxy = httpProxy.createProxyServer({
 const compiler = webpack(webpackConfig);
 
 const app = express();
-
-app.use(webpackDevMiddleware(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath,
-  stats: {
-    colors: true,
-    hash: false,
-    timings: false,
-    chunks: false,
-    chunkModules: false,
-    modules: false,
-    children: false,
-    version: false,
-    cached: false,
-    cachedAssets: false,
-    reasons: false,
-    source: false,
-    errorDetails: false
-  }
-}));
-
-app.use(webpackHotMiddleware(compiler));
 
 app.use('/assets', express.static(path.join(__dirname, 'app/assets')));
 

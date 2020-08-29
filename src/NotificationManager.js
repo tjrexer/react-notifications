@@ -84,7 +84,7 @@ class NotificationManager extends EventEmitter {
   }
 
   remove(notification) {
-    this.listNotify = this.listNotify.filter(n => notification.id !== n.id);
+    this.listNotify = this.listNotify.filter((n) => notification.id !== n.id);
     this.emitChange();
   }
 

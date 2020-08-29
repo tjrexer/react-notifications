@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import path from 'path';
-import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import pkg from '../package.json';
@@ -12,6 +11,7 @@ const HOT = process.argv.indexOf('--hot') !== -1;
 const SOURCE_DIR = 'src';
 const DEST_DIR = 'dist';
 const PUBLIC_PATH = '/';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const sassLoader = {
   loader: 'sass-loader',
@@ -26,8 +26,13 @@ const sassLoader = {
 const hmr = HOT ? ['webpack-hot-middleware/client?reload=true'] : [];
 
 const webpackConfig = {
+  mode: 'development',
   entry: {
     app: hmr.concat([path.join(__dirname, SOURCE_DIR, 'app.js')])
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true
   },
   output: {
     path: path.join(__dirname, DEST_DIR),
@@ -61,25 +66,15 @@ const webpackConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader', 'babel-loader']
+        use: ['react-hot-loader/webpack', 'babel-loader']
       },
       {
-        test: /\.css$/,
-        use: !HOT
-          ? ExtractTextWebpackPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader']
-          })
-          : ['style-loader', 'css-loader', 'postcss-loader']
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: !HOT
-          ? ExtractTextWebpackPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader', 'postcss-loader', sassLoader]
-          })
-          : ['style-loader', 'css-loader', 'postcss-loader', sassLoader]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', sassLoader],
       },
       {
         test: /\.(png|jpg|gif|swf)$/,
@@ -131,18 +126,8 @@ if (HOT) {
 
 if (!HOT) {
   webpackConfig.plugins = webpackConfig.plugins.concat([
-    new ExtractTextWebpackPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css'
-    })
-  ]);
-}
-
-if (PROD) {
-  webpackConfig.plugins = webpackConfig.plugins.concat([
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      }
     })
   ]);
 }

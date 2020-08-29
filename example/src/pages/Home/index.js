@@ -3,7 +3,7 @@ import Document from 'components/Document';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 class HomePage extends React.Component {
-  createNotification = type => () => {
+  createNotification = (type) => () => {
     switch (type) {
       case 'info':
         NotificationManager.info('Info message');
@@ -31,19 +31,19 @@ class HomePage extends React.Component {
           <div className="page-header">
             <h1>Simple sample</h1>
           </div>
-          <button className="btn btn-info" onClick={this.createNotification('info')}>
+          <button type="button" className="btn btn-info" onClick={this.createNotification('info')}>
             Info
           </button>
           <hr/>
-          <button className="btn btn-success" onClick={this.createNotification('success')}>
+          <button type="button" className="btn btn-success" onClick={this.createNotification('success')}>
             Success
           </button>
           <hr/>
-          <button className="btn btn-warning" onClick={this.createNotification('warning')}>
+          <button type="button" className="btn btn-warning" onClick={this.createNotification('warning')}>
             Warning
           </button>
           <hr/>
-          <button className="btn btn-danger" onClick={this.createNotification('error')}>
+          <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
           </button>
 
