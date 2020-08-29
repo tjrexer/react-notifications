@@ -1,6 +1,6 @@
 import React from 'react';
-import Document from 'components/Document';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import Document from '../../components/Document';
+import { NotificationContainer, NotificationManager } from '../../../../dist/react-notifications';
 
 class HomePage extends React.Component {
   createNotification = (type) => () => {

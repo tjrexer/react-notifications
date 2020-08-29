@@ -4,7 +4,7 @@
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {
-    "start": "NODE_ENV=development @babel/node example/webpack.server.js --hot",
+    "start": "NODE_ENV=development babel-node example/webpack.server.js",
     "lint": "NODE_ENV=development eslint .",
     "build": "NODE_ENV=production gulp build"
   },
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/polyfill": "^7.10.4",
@@ -70,6 +71,7 @@
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-dev-server": "^3.11.0",
+    "webpack-livereload-plugin": "^2.3.0",
     "webpack-stream": "^4.0.3"
   },
   "repository": {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Document from 'components/Document';
+import Document from '../../components/Document';
 
 const NotFoundPage = () => (
   <Document title="Page not found | React component example" className="page-not-found">

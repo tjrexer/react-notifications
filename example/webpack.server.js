@@ -1,59 +1,10 @@
-import url from 'url';
-import express from 'express';
+import express from 'express'; 
+import webpackMiddleware from 'webpack-dev-middleware';
 import webpack from 'webpack';
-import fs from 'fs';
-import path from 'path';
-import http from 'http';
-import https from 'https';
-import httpProxy from 'http-proxy';
-import webpackConfig from './webpack.config.babel';
-
-const devURL = process.env.npm_package_config_devURL || 'http://localhost:3000';
-const urlParts = url.parse(devURL);
-const proxyOptions = process.env.npm_package_config_proxy || [];
-
-const proxy = httpProxy.createProxyServer({
-  changeOrigin: true,
-  ws: true
-});
-
-const compiler = webpack(webpackConfig);
-
+import webpackConfig from './webpack.config.babel.js';
 const app = express();
+app.use(webpackMiddleware(webpack(webpackConfig)));
 
-app.use('/assets', express.static(path.join(__dirname, 'app/assets')));
-
-proxyOptions.forEach((option) => {
-  app.all(option.path, (req, res) => {
-    proxy.web(req, res, option, (err) => {
-      console.log(err.message);
-      res.statusCode = 502;
-      res.end();
-    });
-  });
-});
-
-app.get('*', (req, res, next) => {
-  const filename = path.join(compiler.outputPath, 'index.html');
-  compiler.outputFileSystem.readFile(filename, (error, result) => {
-    if (error) {
-      next(error);
-    } else {
-      res.set('content-type', 'text/html');
-      res.send(result);
-      res.end();
-    }
-  });
-});
-
-let server = http.createServer(app);
-if (urlParts.protocol === 'https:') {
-  server = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'cert.pem'))
-  }, app);
-}
-
-server.listen(urlParts.port, () => {
-  console.log(`Listening at ${devURL}`);
+app.listen(3000, () => {
+  console.log('Listening');
 });
