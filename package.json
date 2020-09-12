@@ -1,6 +1,6 @@
 {
   "name": "react-notifications",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "@babel/node": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/polyfill": "^7.10.4",
+    "@babel/polyfill": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.5",
@@ -52,7 +52,7 @@
     "file-loader": "^1.1.11",
     "flux": "^3.1.2",
     "globby": "^6.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^7.0.0",
@@ -66,6 +66,7 @@
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.12.21",
     "react-router-dom": "^4.1.1",
+    "regenerator-runtime": "^0.13.7",
     "run-sequence": "^1.2.2",
     "sass-loader": "^6.0.1",
     "style-loader": "^1.2.1",
