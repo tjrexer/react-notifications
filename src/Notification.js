@@ -30,7 +30,7 @@ class Notification extends React.Component {
     }
   };
 
-  componentWillUnmount = () => {
+  componentDidUnmount = () => {
     if (this.timer) {
       clearTimeout(this.timer);
     }

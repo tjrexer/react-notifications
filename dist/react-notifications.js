@@ -733,7 +733,7 @@ var Notification_Notification = /*#__PURE__*/function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "componentWillUnmount", function () {
+    _defineProperty(_assertThisInitialized(_this), "componentDidUnmount", function () {
       if (_this.timer) {
         clearTimeout(_this.timer);
       }
@@ -1130,7 +1130,7 @@ var NotificationContainer_NotificationContainer = /*#__PURE__*/function (_React$
       src_NotificationManager.addChangeListener(_this.handleStoreChange);
     });
 
-    NotificationContainer_defineProperty(NotificationContainer_assertThisInitialized(_this), "componentWillUnmount", function () {
+    NotificationContainer_defineProperty(NotificationContainer_assertThisInitialized(_this), "componentDidUnmount", function () {
       src_NotificationManager.removeChangeListener(_this.handleStoreChange);
     });
 

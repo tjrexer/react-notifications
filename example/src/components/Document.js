@@ -23,7 +23,7 @@ class Document extends React.Component {
     }
   };
 
-  componentWillUnmount = () => {
+  componentDidUnmount = () => {
     document.title = this.state.oldTitle;
     document.body.className = this.state.oldClassName;
   };
