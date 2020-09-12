@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("prop-types"), require("react"), require("react-transition-group"));
+		module.exports = factory(require("react"), require("prop-types"), require("react-transition-group"));
 	else if(typeof define === 'function' && define.amd)
-		define(["prop-types", "react", "react-transition-group"], factory);
+		define(["react", "prop-types", "react-transition-group"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactNotifications"] = factory(require("prop-types"), require("react"), require("react-transition-group"));
+		exports["ReactNotifications"] = factory(require("react"), require("prop-types"), require("react-transition-group"));
 	else
-		root["ReactNotifications"] = factory(root["PropTypes"], root["React"], root["ReactTransitionGroup"]);
+		root["ReactNotifications"] = factory(root["React"], root["PropTypes"], root["ReactTransitionGroup"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -666,11 +666,11 @@ __webpack_require__.d(__webpack_exports__, "NotificationContainer", function() {
 __webpack_require__.d(__webpack_exports__, "NotificationManager", function() { return /* reexport */ src_NotificationManager; });
 
 // EXTERNAL MODULE: external {"root":"React","commonjs":"react","commonjs2":"react","amd":"react"}
-var external_root_React_commonjs_react_commonjs2_react_amd_react_ = __webpack_require__(1);
+var external_root_React_commonjs_react_commonjs2_react_amd_react_ = __webpack_require__(0);
 var external_root_React_commonjs_react_commonjs2_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs_react_commonjs2_react_amd_react_);
 
 // EXTERNAL MODULE: external {"root":"PropTypes","commonjs":"prop-types","commonjs2":"prop-types","amd":"prop-types"}
-var external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_ = __webpack_require__(0);
+var external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_ = __webpack_require__(1);
 var external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_default = /*#__PURE__*/__webpack_require__.n(external_root_PropTypes_commonjs_prop_types_commonjs2_prop_types_amd_prop_types_);
 
 // EXTERNAL MODULE: external {"root":["ReactTransitionGroup"],"commonjs":"react-transition-group","commonjs2":"react-transition-group","amd":"react-transition-group"}
@@ -877,15 +877,16 @@ var Notifications_Notifications = /*#__PURE__*/function (_React$Component) {
       var className = classnames_default()('notification-container', {
         'notification-container-empty': notifications.length === 0
       });
-      return /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
-        className: className
-      }, /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement(external_root_ReactTransitionGroup_commonjs_react_transition_group_commonjs2_react_transition_group_amd_react_transition_group_["CSSTransitionGroup"], {
-        transitionName: "notification",
-        transitionEnterTimeout: enterTimeout,
-        transitionLeaveTimeout: leaveTimeout
-      }, notifications.map(function (notification) {
+      var items = notifications.map(function (notification, i) {
         var key = notification.id || new Date().getTime();
-        return /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement(src_Notification, {
+        return /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement(external_root_ReactTransitionGroup_commonjs_react_transition_group_commonjs2_react_transition_group_amd_react_transition_group_["CSSTransition"], {
+          key: i,
+          classNames: "notification",
+          timeout: {
+            enter: enterTimeout,
+            exit: leaveTimeout
+          }
+        }, /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement(src_Notification, {
           key: key,
           type: notification.type,
           title: notification.title,
@@ -893,8 +894,11 @@ var Notifications_Notifications = /*#__PURE__*/function (_React$Component) {
           timeOut: notification.timeOut,
           onClick: notification.onClick,
           onRequestHide: _this2.handleRequestHide(notification)
-        });
-      })));
+        }));
+      });
+      return /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement("div", {
+        className: className
+      }, /*#__PURE__*/external_root_React_commonjs_react_commonjs2_react_amd_react_default.a.createElement(external_root_ReactTransitionGroup_commonjs_react_transition_group_commonjs2_react_transition_group_amd_react_transition_group_["TransitionGroup"], null, items));
     }
   }]);
 
