@@ -46,6 +46,22 @@ class HomePage extends React.Component {
           <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
           </button>
+          <hr/>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => {
+              // Ensure the timeout is greater than when you want to remove
+              // the notification programatically
+              const timeout = 60_000;
+              const notification = NotificationManager.success('Long running task', 'Remove after 2 seconds', timeout);
+              setTimeout(() => {
+                NotificationManager.remove(notification.id);
+              }, 2000);
+            }}
+          >
+            Programatically remove after 2 seconds
+          </button>
 
           <NotificationContainer/>
         </div>
