@@ -998,11 +998,14 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
       }
 
       this.emitChange();
+      return {
+        id: defaultNotify.id
+      };
     }
   }, {
     key: "info",
     value: function info(message, title, timeOut, onClick, priority) {
-      this.create({
+      return this.create({
         type: Constants.INFO,
         message: message,
         title: title,
@@ -1014,7 +1017,7 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
   }, {
     key: "success",
     value: function success(message, title, timeOut, onClick, priority) {
-      this.create({
+      return this.create({
         type: Constants.SUCCESS,
         message: message,
         title: title,
@@ -1026,7 +1029,7 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
   }, {
     key: "warning",
     value: function warning(message, title, timeOut, onClick, priority) {
-      this.create({
+      return this.create({
         type: Constants.WARNING,
         message: message,
         title: title,
@@ -1038,7 +1041,7 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
   }, {
     key: "error",
     value: function error(message, title, timeOut, onClick, priority) {
-      this.create({
+      return this.create({
         type: Constants.ERROR,
         message: message,
         title: title,
@@ -1050,8 +1053,9 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
   }, {
     key: "remove",
     value: function remove(notification) {
+      var id = typeof notification === 'string' ? notification : notification.id;
       this.listNotify = this.listNotify.filter(function (n) {
-        return notification.id !== n.id;
+        return id !== n.id;
       });
       this.emitChange();
     }
