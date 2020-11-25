@@ -4,9 +4,9 @@
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
   "scripts": {
-    "start": "NODE_ENV=development babel-node example/webpack.server.js",
-    "lint": "NODE_ENV=development eslint .",
-    "build": "NODE_ENV=production gulp build"
+    "start": "cross-env NODE_ENV=development babel-node example/webpack.server.js",
+    "lint": "cross-env NODE_ENV=development eslint .",
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "keywords": [
     "react-component",
