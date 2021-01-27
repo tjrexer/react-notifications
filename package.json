@@ -3,6 +3,7 @@
   "version": "1.7.2",
   "description": "Notification component for ReactJS",
   "main": "lib/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "start": "NODE_ENV=development babel-node example/webpack.server.js",
     "lint": "NODE_ENV=development eslint .",
