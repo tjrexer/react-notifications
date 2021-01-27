@@ -926,6 +926,12 @@ var events = __webpack_require__(4);
 // CONCATENATED MODULE: ./src/NotificationManager.js
 function NotificationManager_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { NotificationManager_typeof = function _typeof(obj) { return typeof obj; }; } else { NotificationManager_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return NotificationManager_typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { NotificationManager_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function NotificationManager_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function NotificationManager_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function NotificationManager_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -983,69 +989,90 @@ var NotificationManager = /*#__PURE__*/function (_EventEmitter) {
   NotificationManager_createClass(NotificationManager, [{
     key: "create",
     value: function create(notify) {
-      var defaultNotify = {
+      var _notify$tags = notify.tags,
+          tags = _notify$tags === void 0 ? [] : _notify$tags;
+
+      if (typeof tags === 'string') {
+        tags = [tags];
+      }
+
+      var notification = _objectSpread({
         id: createUUID(),
         type: 'info',
         title: null,
         message: null,
+        tags: tags,
         timeOut: 5000
-      };
+      }, notify);
 
-      if (notify.priority) {
-        this.listNotify.unshift(Object.assign(defaultNotify, notify));
+      if (notification.priority) {
+        this.listNotify.unshift(notification);
       } else {
-        this.listNotify.push(Object.assign(defaultNotify, notify));
+        this.listNotify.push(notification);
       }
 
       this.emitChange();
+      return notification;
     }
   }, {
     key: "info",
-    value: function info(message, title, timeOut, onClick, priority) {
-      this.create({
+    value: function info(message, title, timeOut, onClick, priority, tags) {
+      return this.create({
         type: Constants.INFO,
         message: message,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
-        priority: priority
+        priority: priority,
+        tags: tags
       });
     }
   }, {
     key: "success",
-    value: function success(message, title, timeOut, onClick, priority) {
-      this.create({
+    value: function success(message, title, timeOut, onClick, priority, tags) {
+      return this.create({
         type: Constants.SUCCESS,
         message: message,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
-        priority: priority
+        priority: priority,
+        tags: tags
       });
     }
   }, {
     key: "warning",
-    value: function warning(message, title, timeOut, onClick, priority) {
-      this.create({
+    value: function warning(message, title, timeOut, onClick, priority, tags) {
+      return this.create({
         type: Constants.WARNING,
         message: message,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
-        priority: priority
+        priority: priority,
+        tags: tags
       });
     }
   }, {
     key: "error",
-    value: function error(message, title, timeOut, onClick, priority) {
-      this.create({
+    value: function error(message, title, timeOut, onClick, priority, tags) {
+      return this.create({
         type: Constants.ERROR,
         message: message,
         title: title,
         timeOut: timeOut,
         onClick: onClick,
-        priority: priority
+        priority: priority,
+        tags: tags
       });
+    }
+  }, {
+    key: "removeByTag",
+    value: function removeByTag(tag) {
+      this.listNotify = this.listNotify.filter(function (n) {
+        return !n.tags.includes(tag);
+      });
+      this.emitChange();
     }
   }, {
     key: "remove",

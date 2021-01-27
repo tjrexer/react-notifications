@@ -24,63 +24,79 @@ class NotificationManager extends EventEmitter {
   }
 
   create(notify) {
-    const defaultNotify = {
+    let { tags = [] } = notify;
+    if (typeof tags === 'string') {
+      tags = [tags];
+    }
+    const notification = {
       id: createUUID(),
       type: 'info',
       title: null,
       message: null,
-      timeOut: 5000
+      tags,
+      timeOut: 5000,
+      ...notify
     };
-    if (notify.priority) {
-      this.listNotify.unshift(Object.assign(defaultNotify, notify));
+    if (notification.priority) {
+      this.listNotify.unshift(notification);
     } else {
-      this.listNotify.push(Object.assign(defaultNotify, notify));
+      this.listNotify.push(notification);
     }
     this.emitChange();
+    return notification;
   }
 
-  info(message, title, timeOut, onClick, priority) {
-    this.create({
+  info(message, title, timeOut, onClick, priority, tags) {
+    return this.create({
       type: Constants.INFO,
       message,
       title,
       timeOut,
       onClick,
-      priority
+      priority,
+      tags
     });
   }
 
-  success(message, title, timeOut, onClick, priority) {
-    this.create({
+  success(message, title, timeOut, onClick, priority, tags) {
+    return this.create({
       type: Constants.SUCCESS,
       message,
       title,
       timeOut,
       onClick,
-      priority
+      priority,
+      tags
     });
   }
 
-  warning(message, title, timeOut, onClick, priority) {
-    this.create({
+  warning(message, title, timeOut, onClick, priority, tags) {
+    return this.create({
       type: Constants.WARNING,
       message,
       title,
       timeOut,
       onClick,
-      priority
+      priority,
+      tags
     });
   }
 
-  error(message, title, timeOut, onClick, priority) {
-    this.create({
+  error(message, title, timeOut, onClick, priority, tags) {
+    return this.create({
       type: Constants.ERROR,
       message,
       title,
       timeOut,
       onClick,
-      priority
+      priority,
+      tags
     });
+  }
+
+  removeByTag(tag) {
+    this.listNotify = this.listNotify.filter((n) => !n.tags.includes(tag));
+    this.emitChange();
   }
 
   remove(notification) {

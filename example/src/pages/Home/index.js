@@ -19,9 +19,16 @@ class HomePage extends React.Component {
           alert('callback');
         });
         break;
+      case 'tag':
+        NotificationManager.error('With tag', 'With tag', 10000, undefined, false, 'tag');
+        break;
       default:
         break;
     }
+  };
+
+  removeByTag = () => {
+    NotificationManager.removeByTag('tag');
   };
 
   render() {
@@ -45,6 +52,14 @@ class HomePage extends React.Component {
           <hr/>
           <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
             Error
+          </button>
+          <hr/>
+          <button type="button" className="btn btn-default" onClick={this.createNotification('tag')}>
+            Tag
+          </button>
+          <hr/>
+          <button type="button" className="btn btn-default" onClick={this.removeByTag}>
+            Clear all with tag
           </button>
 
           <NotificationContainer/>
