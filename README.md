@@ -30,10 +30,9 @@ import 'react-notifications/lib/notifications.css';
 
 ```js
 import React from 'react';
-import Document from '../../components/Document';
 import { NotificationContainer, NotificationManager } from '../../../../dist/react-notifications';
 
-class HomePage extends React.Component {
+class Example extends React.Component {
     createNotification = (type) => () => {
         switch (type) {
             case 'info':
@@ -64,43 +63,41 @@ class HomePage extends React.Component {
 
     render() {
         return (
-                <Document title="Home | React notifications" className="page-home">
-                    <div>
-                        <div className="page-header">
-                            <h1>Simple sample</h1>
-                        </div>
-                        <button type="button" className="btn btn-info" onClick={this.createNotification('info')}>
-                            Info
-                        </button>
-                        <hr/>
-                        <button type="button" className="btn btn-success" onClick={this.createNotification('success')}>
-                            Success
-                        </button>
-                        <hr/>
-                        <button type="button" className="btn btn-warning" onClick={this.createNotification('warning')}>
-                            Warning
-                        </button>
-                        <hr/>
-                        <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
-                            Error
-                        </button>
-                        <hr/>
-                        <button type="button" className="btn btn-default" onClick={this.createNotification('tag')}>
-                            Tag
-                        </button>
-                        <hr/>
-                        <button type="button" className="btn btn-default" onClick={this.removeByTag}>
-                            Clear all with tag
-                        </button>
+            <div>
+                <div className="page-header">
+                    <h1>Simple sample</h1>
+                </div>
+                <button type="button" className="btn btn-info" onClick={this.createNotification('info')}>
+                    Info
+                </button>
+                <hr/>
+                <button type="button" className="btn btn-success" onClick={this.createNotification('success')}>
+                    Success
+                </button>
+                <hr/>
+                <button type="button" className="btn btn-warning" onClick={this.createNotification('warning')}>
+                    Warning
+                </button>
+                <hr/>
+                <button type="button" className="btn btn-danger" onClick={this.createNotification('error')}>
+                    Error
+                </button>
+                <hr/>
+                <button type="button" className="btn btn-default" onClick={this.createNotification('tag')}>
+                    Tag
+                </button>
+                <hr/>
+                <button type="button" className="btn btn-default" onClick={this.removeByTag}>
+                    Clear all with tag
+                </button>
 
-                        <NotificationContainer/>
-                    </div>
-                </Document>
+                <NotificationContainer/>
+            </div>
         );
     }
 }
 
-export default HomePage;
+export default Example;
 
 ```
 
