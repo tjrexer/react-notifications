@@ -88,6 +88,11 @@ class NotificationManager extends EventEmitter {
     this.emitChange();
   }
 
+  removeAll() {
+    this.listNotify.length = 0;
+    this.emitChange();
+  }
+
   emitChange() {
     this.emit(Constants.CHANGE, this.listNotify);
   }
