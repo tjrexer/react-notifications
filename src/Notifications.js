@@ -33,16 +33,15 @@ class Notifications extends React.Component {
       'notification-container-empty': notifications.length === 0
     });
 
-    const items = notifications.map((notification, i) => {
+    const items = notifications.map((notification) => {
       const key = notification.id || new Date().getTime();
       return (
         <CSSTransition
-          key={i}
+          key={key}
           classNames="notification"
           timeout={{ enter: enterTimeout, exit: leaveTimeout }}
         >
           <Notification
-            key={key}
             type={notification.type}
             title={notification.title}
             message={notification.message}
