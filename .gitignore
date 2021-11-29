@@ -1,2 +1,5 @@
 node_modules
 example/dist
+
+.vscode
+.DS_Store
