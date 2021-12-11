@@ -1,7 +1,8 @@
-import express from 'express'; 
+import express from 'express';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpack from 'webpack';
 import webpackConfig from './webpack.config.babel.js';
+
 const app = express();
 app.use(webpackMiddleware(webpack(webpackConfig)));
 

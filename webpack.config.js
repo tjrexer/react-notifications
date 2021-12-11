@@ -3,7 +3,7 @@ import path from 'path';
 import camelCase from 'camelcase';
 import pkg from './package.json';
 
-const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
 const webpackConfig = {
   mode: 'production',
