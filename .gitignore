@@ -1,2 +1,6 @@
 node_modules
 example/dist
+
+# Environment files to ignore
+.DS_Store
+.vscode
