@@ -8,6 +8,7 @@ class Notification extends React.Component {
     title: PropTypes.node,
     message: PropTypes.node,
     timeOut: PropTypes.number,
+    nodeRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
     onClick: PropTypes.func,
     onRequestHide: PropTypes.func
   };
@@ -17,6 +18,7 @@ class Notification extends React.Component {
     title: null,
     message: null,
     timeOut: 5000,
+    nodeRef: null,
     onClick: () => {
     },
     onRequestHide: () => {
@@ -52,12 +54,12 @@ class Notification extends React.Component {
   };
 
   render() {
-    const { type, message } = this.props;
+    const { type, message, nodeRef } = this.props;
     let { title } = this.props;
     const className = classnames(['notification', `notification-${type}`]);
     title = title ? (<h4 className="title">{title}</h4>) : null;
     return (
-      <div className={className} onClick={this.handleClick}>
+      <div className={className} onClick={this.handleClick} ref={nodeRef}>
         <div className="notification-message" role="alert">
           {title}
           <div className="message">{message}</div>

@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import React from 'react';
 
 const createUUID = () => {
   const pattern = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
@@ -29,7 +30,8 @@ class NotificationManager extends EventEmitter {
       type: 'info',
       title: null,
       message: null,
-      timeOut: 5000
+      timeOut: 5000,
+      nodeRef: React.createRef()
     };
     if (notify.priority) {
       this.listNotify.unshift(Object.assign(defaultNotify, notify));

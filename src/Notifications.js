@@ -40,12 +40,14 @@ class Notifications extends React.Component {
           key={key}
           classNames="notification"
           timeout={{ enter: enterTimeout, exit: leaveTimeout }}
+          nodeRef={notification.nodeRef}
         >
           <Notification
             type={notification.type}
             title={notification.title}
             message={notification.message}
             timeOut={notification.timeOut}
+            nodeRef={notification.nodeRef}
             onClick={notification.onClick}
             onRequestHide={this.handleRequestHide(notification)}
           />
